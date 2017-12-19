@@ -2,7 +2,7 @@
 
 
 
-  
+
 
 
 <html class="theme-next mist use-motion" lang="zh-Hans">
@@ -37,36 +37,36 @@
 
 
 
-  
-  
+
+
   <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
 
-  
-  
-  
-  
 
-  
-    
-    
-  
 
-  
 
-  
 
-  
 
-  
 
-  
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-  
+
 
 
 
@@ -140,7 +140,7 @@
 
 
   <title> | Comtu</title>
-  
+
 
 
 
@@ -169,10 +169,10 @@
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
-  
-  
-    
-  
+
+
+
+
 
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
@@ -180,7 +180,7 @@
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
-    
+
 
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
@@ -189,9 +189,9 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
+
         <p class="site-subtitle"></p>
-      
+
   </div>
 
   <div class="site-nav-toggle">
@@ -204,80 +204,80 @@
 </div>
 
 <nav class="site-nav">
-  
 
-  
+
+
     <ul id="menu" class="menu">
-      
-        
+
+
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
-            
+
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
+
             首页
           </a>
         </li>
-      
-        
+
+
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
-            
+
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
+
             归档
           </a>
         </li>
-      
-        
+
+
         <li class="menu-item menu-item-categories">
           <a href="/categories" rel="section">
-            
+
               <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
+
             分类
           </a>
         </li>
-      
-        
+
+
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
-            
+
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
+
             标签
           </a>
         </li>
-      
-        
+
+
         <li class="menu-item menu-item-about">
           <a href="/about" rel="section">
-            
+
               <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
+
             关于
           </a>
         </li>
-      
 
-      
+
+
         <li class="menu-item menu-item-search">
-          
+
             <a href="javascript:;" class="popup-trigger">
-          
-            
+
+
               <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
+
             搜索
           </a>
         </li>
-      
-    </ul>
-  
 
-  
+    </ul>
+
+
+
     <div class="site-search">
-      
+
   <div class="popup search-popup local-search-popup">
   <div class="local-search-header clearfix">
     <span class="search-icon">
@@ -298,7 +298,7 @@
 
 
     </div>
-  
+
 </nav>
 
 
@@ -310,12 +310,12 @@
       <div class="main-inner">
         <div class="content-wrap">
           <div id="content" class="content">
-            
+
 
   <div id="posts" class="posts-expand">
-    
-    
-    
+
+
+
     <div class="post-block page">
       <header class="post-header">
 
@@ -325,12 +325,12 @@
 
 </header>
 
-      
-      
-      
+
+
+
       <div class="post-body">
-        
-        
+
+
           <!doctype html>
 <html>
 	<head>
@@ -365,26 +365,26 @@
 			//获取绘图环境
 			var canvas=document.getElementById('canvas');
 			var context=canvas.getContext('2d');
-			
-			
+
+
 			//创建对象集合 （集合所有精灵）
 			var sprites=[];
-					
+
 			//创建我方飞机
 			var plane=createPlane();
 			//讲我方飞机添加到精灵对象集合中
 			sprites.push(plane);
-					
+
 			//添加飞机计时变量  用于记录飞机出现的时间
 			var smallEnemyTime=0;//记录最后一次小飞机出现的时间
 			var middleEnemyTime=0;//记录最后一次中飞机出现的时间
 			var bigEnemyTime=0;//记录最后一次大飞机出现的时间
 			var bulletTime=0;//记录最后一次子弹出现的时间
-			
+
 			//声明积分变量
 			var score=0;
-			
-			
+
+
 			//添加鼠标事件 实现我方飞机的移动
 			//鼠标按下事件
 			//记录鼠标是否按下的变量
@@ -392,7 +392,7 @@
 			canvas.onmousedown=function(e){
 				mousedown=true;
 			}
-			
+
 			//鼠标移动事件
 			canvas.onmousemove=function(e){
 				if(mousedown==true){
@@ -401,22 +401,22 @@
 					//获取当前鼠标相对于canvas的坐标
 					var ponit=windowToCanvas(this,e.clientX,e.clientY);
 					//重新设置我方飞机的坐标点
-					
+
 					plane.left=ponit.x-plane.width/2;
 					plane.top=ponit.y-plane.height/2;
 				}
-				
+
 			}
 			//松开鼠标事件
 			canvas.onmouseup=function(e){
 				mousedown=false;
 			}
-			
-			
-			
-			
+
+
+
+
 			function animate(time){
-			
+
 				//添加飞机操作
 				//小飞机添加
 				if(time-smallEnemyTime>1500){
@@ -425,10 +425,10 @@
 						sprites.push(createEnemy('smallEnemy'));
 					}
 					//更新最后一次记录时间
-					smallEnemyTime=time;	
-	
+					smallEnemyTime=time;
+
 				}
-				
+
 				//添加中飞机
 				if(time-middleEnemyTime>3000){
 					//添加中飞机
@@ -437,7 +437,7 @@
 					//更新最后一次记录时间
 					middleEnemyTime=time;
 				}
-				
+
 				//添加大飞机
 				if(time-bigEnemyTime>10000){
 					//添加中飞机
@@ -445,36 +445,36 @@
 					//更新最后一次记录时间
 					bigEnemyTime=time;
 				}
-				
+
 				//添加子弹
 				if(time-bulletTime>150){
 					sprites.push(createBullet(plane.left+plane.width/2,plane.top-15));
 					bulletTime=time;
 				}
-				
-				
-				
-				
+
+
+
+
 				//更新当前背景的位置
 				bgSprite.update(context,time);
 				//绘制背景
 				bgSprite.paint(context);
-				
+
 				//循环遍历所有精灵对象 更新行为
 				for(var i=0;i<sprites.length;i++){
 					sprites[i].update(context,time);
-					
-					
+
+
 					//判断是否有不可见的精灵对象
 					if(sprites[i].visible==false){
 						//在飞机对象删除之前把分数累加起来
 						if(sprites[i].name!='bullet' && sprites[i].name!='plane' ){//判断是否是飞机
 							score=score+sprites[i].score;
 						}
-						
+
 						//删除不可见的对象
 						sprites.splice(i,1);
-					}	
+					}
 				}
 				//循环遍历所有精灵对象 绘制对象
 				for(var i=0;i<sprites.length;i++){
@@ -492,7 +492,7 @@
 									sprites[i].top>sprites[j].top &&
 									//子弹纵坐标<底部位置
 									sprites[i].top<sprites[j].top+sprites[j].height){
-								
+
 									//只有飞机气血>=1的情况下才减血
 									if(sprites[j].hp>=1){
 										//讲当前飞机的气血-1
@@ -500,68 +500,68 @@
 										//讲当前子弹变为不可见状态
 										sprites[i].visible=false;
 									}
-									
-								
+
+
 								}
-							
+
 							}
 						}
 					}
 					sprites[i].paint(context);
 				}
-				
-				
+
+
 				context.font='26px 黑体 ';
 				//检测当前页面对象个数
 				context.fillText('对象个数:'+sprites.length,150,540);
 				//分数统计
 				context.fillText('总分:'+score,170,30);
-				
+
 				//帧率计算
 				context.fillText('FPS：'+countFps(),10,30);
 				//再次调用绘制动画方法
 				window.requestNextAnimationFrame(animate);
 			}
-			
+
 			window.requestNextAnimationFrame(animate);
-			
-			
+
+
 		</script>
 	</body>
 </html>
-        
+
       </div>
-      
-      
-      
+
+
+
     </div>
-    
-    
-    
+
+
+
   </div>
 
 
           </div>
-          
 
 
-          
+
+
   <div class="comments" id="comments">
-    
+
       <div id="disqus_thread">
         <noscript>
           Please enable JavaScript to view the
           <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
         </noscript>
       </div>
-    
+
   </div>
 
 
         </div>
-        
-          
-  
+
+
+
   <div class="sidebar-toggle">
     <div class="sidebar-toggle-line-wrap">
       <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
@@ -571,12 +571,12 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
+
     <div class="sidebar-inner">
 
-      
 
-      
+
+
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -584,103 +584,103 @@
                src="/res/img/icon.jpg"
                alt="Comtu" />
           <p class="site-author-name" itemprop="name">Comtu</p>
-           
+
               <p class="site-description motion-element" itemprop="description">The time is passing</p>
-          
+
         </div>
         <nav class="site-state motion-element">
 
-          
+
             <div class="site-state-item site-state-posts">
               <a href="/archives">
                 <span class="site-state-item-count">31</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
-          
 
-          
-            
-            
+
+
+
+
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
                 <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
-          
 
-          
-            
-            
+
+
+
+
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
                 <span class="site-state-item-count">98</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
-          
+
 
         </nav>
 
-        
+
 
         <div class="links-of-author motion-element">
-          
-            
+
+
               <span class="links-of-author-item">
-                <a href="https://github.com/comtu" target="_blank" title="GitHub">
-                  
+                <a href="https://github.com/wuhuhu800" target="_blank" title="GitHub">
+
                     <i class="fa fa-fw fa-github"></i>
-                  
-                    
+
+
                       GitHub
-                    
+
                 </a>
               </span>
-            
+
               <span class="links-of-author-item">
                 <a href="http://weibo.com/comtu" target="_blank" title="Weibo">
-                  
+
                     <i class="fa fa-fw fa-weibo"></i>
-                  
-                    
+
+
                       Weibo
-                    
+
                 </a>
               </span>
-            
-          
+
+
         </div>
 
-        
-        
 
-        
-        
 
-        
+
+
+
+
+
 
 
       </section>
 
-      
 
-      
+
+
 
     </div>
   </aside>
 
 
-        
+
       </div>
     </main>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <div class="copyright" >
-  
-  &copy;  2013 - 
+
+  &copy;  2013 -
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
@@ -701,22 +701,22 @@
 </div>
 
 
-        
 
-        
+
+
       </div>
     </footer>
 
-    
+
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
-        
+
       </div>
-    
+
 
   </div>
 
-  
+
 
 <script type="text/javascript">
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
@@ -732,7 +732,6 @@
 
 
 
-  
 
 
 
@@ -741,39 +740,40 @@
 
 
 
-  
-  
 
 
 
 
 
-  
+
+
+
+
   <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
 
-  
+
   <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
-  
+
   <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
-  
+
   <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
-  
+
   <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
-  
+
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
-  
+
   <script type="text/javascript" src="/lib/three/three.min.js"></script>
 
-  
+
   <script type="text/javascript" src="/lib/three/canvas_sphere.min.js"></script>
 
 
-  
+
 
 
   <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
@@ -782,32 +782,32 @@
 
 
 
-  
-  
 
-  
+
+
+
     <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
 
-  
+
+
 
 
   <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
 
 
 
-  
 
 
-  
 
-    
+
+
+
       <script id="dsq-count-scr" src="https://comtu.disqus.com/count.js" async></script>
-    
 
-    
+
+
       <script type="text/javascript">
         var disqus_config = function () {
           this.page.url = 'https://wuhuhu800.github.io/res/game/plane/plane.html';
@@ -819,20 +819,6 @@
         s.setAttribute('data-timestamp', '' + +new Date());
         (d.head || d.body).appendChild(s);
       </script>
-    
-
-  
-
-
-
-
-	
-
-
-
-
-
-  
 
 
 
@@ -841,7 +827,21 @@
 
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   <script type="text/javascript">
     // Popup Window;
@@ -1164,9 +1164,9 @@
 
 
 
-  
 
-  
+
+
   <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
   <script>AV.initialize("feqhc8WOUwoueUx9gkNO8kIq-gzGzoHsz", "3Igep5lfuSGHiGQJB0PFjICO");</script>
   <script>
@@ -1273,15 +1273,15 @@
 
 
 
-  
 
-  
 
-  
 
-  
 
-  
+
+
+
+
+
 
 </body>
 </html>
