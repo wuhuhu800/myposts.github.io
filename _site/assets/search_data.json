@@ -73,20 +73,20 @@
 
   
     {
-      "title"    : "摄影教训总结",
+      "title"    : "【转】摄影教训总结",
       "category" : "Blog",
       "url"      : "http://localhost:4000/2014/08/26/takephotos/"
     } ,
   
     {
-      "title"    : "解决两个 Android 模拟器之间无法网络通信的问题",
+      "title"    : "【转】解决两个 Android 模拟器之间无法网络通信的问题",
       "category" : "Android",
       "url"      : "http://localhost:4000/2017/12/03/tcp-connect-between-android-emulators/"
     } ,
   
     {
-      "title"    : "我的第一个博客",
-      "category" : "技术",
+      "title"    : "测试jekyll功能",
+      "category" : "练习",
       "url"      : "http://localhost:4000/2017/12/21/start/"
     } ,
   
