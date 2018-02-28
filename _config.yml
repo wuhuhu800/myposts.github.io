@@ -127,3 +127,5 @@ defaults:
       type: my_collection
     values:
       layout: page
+
+theme: jekyll-theme-architect
