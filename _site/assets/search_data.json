@@ -88,6 +88,18 @@
       "title"    : "我的第一个博客",
       "category" : "技术",
       "url"      : "http://localhost:4000/2017/12/21/start/"
+    } ,
+  
+    {
+      "title"    : "XGBoost 参数调优(python)",
+      "category" : "机器学习",
+      "url"      : "http://localhost:4000/2018/02/28/XGboost_param_share/"
+    } ,
+  
+    {
+      "title"    : "XGBoost 参数官方文档翻译",
+      "category" : "机器学习",
+      "url"      : "http://localhost:4000/2018/02/28/xgboost_parameters/"
     } 
   
 ]

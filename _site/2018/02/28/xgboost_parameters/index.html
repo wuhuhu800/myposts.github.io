@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans" prefix="og: http://ogp.me/ns#" class="han-init">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>XGBoost 参数官方文档翻译 &mdash; 问道</title>
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-css/css/primer.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/primer-markdown/dist/user-content.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/octicons/octicons/octicons.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/collection.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/repo-card.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/sections/mini-repo-list.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/components/boxed-group.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/common.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/vendor/share.js/dist/css/share.min.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/responsive.css">
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/posts/index.css">
+    <!-- Latest compiled and minified CSS -->
+    
+
+    
+    <link rel="canonical" href="http://localhost:4000/2018/02/28/xgboost_parameters/">
+    <link rel="alternate" type="application/atom+xml" title="问道" href="http://localhost:4000/feed.xml">
+    <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+    
+    <meta property="og:title" content="XGBoost 参数官方文档翻译">
+      
+    <meta name="keywords" content="机器学习,Xgboost,">
+    <meta name="og:keywords" content="机器学习,Xgboost,">
+      
+    <meta name="description" content="xgboost参数非常之多，打算借着翻译官方文档理解一下xgboost的相关参数，以下是xgboost官方文档关于参数的全部翻译。">
+    <meta name="og:description" content="xgboost参数非常之多，打算借着翻译官方文档理解一下xgboost的相关参数，以下是xgboost官方文档关于参数的全部翻译。">
+      
+    
+    
+        
+    
+    <meta property="og:url" content="http://localhost:4000/2018/02/28/xgboost_parameters/">
+    <meta property="og:site_name" content="问道">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_CN" />
+    
+    <meta property="article:published_time" content="2018-02-28">
+    
+    <script src="http://localhost:4000/assets/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="http://localhost:4000/assets/js/jquery-ui.js"></script>
+    <script type="text/javascript">
+    function toggleMenu() {
+        var nav = document.getElementsByClassName("site-header-nav")[0];
+        if (nav.style.display == "inline-flex") {
+          nav.style.display = "none";
+        } else {
+          nav.style.display = "inline-flex";
+        }
+    }
+    </script>
+</head>
+<body class="" data-mz="">
+    <header class="site-header">
+        <div class="container">
+            <h1><a href="http://localhost:4000/" title="问道"><span class="octicon octicon-mark-github"></span> 问道</a></h1>
+            <button class="collapsed mobile-visible" type="button" onclick="toggleMenu();">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <nav class="site-header-nav" role="navigation">
+                
+                <a href="http://localhost:4000/" class=" site-header-nav-item" target="" title="首页">首页</a>
+                
+                <a href="http://localhost:4000/categories/" class=" site-header-nav-item" target="" title="分类">分类</a>
+                
+                <a href="http://localhost:4000/wiki/" class=" site-header-nav-item" target="" title="维基">维基</a>
+                
+                <a href="http://localhost:4000/links/" class=" site-header-nav-item" target="" title="链接">链接</a>
+                
+                <a href="http://localhost:4000/about/" class=" site-header-nav-item" target="" title="关于">关于</a>
+                
+            </nav>
+        </div>
+    </header>
+    <!-- / header -->
+
+    <section class="collection-head small geopattern" data-pattern-id="XGBoost 参数官方文档翻">
+<div class="container">
+  <div class="columns">
+    <div class="column three-fourths">
+      <div class="collection-title">
+        <h1 class="collection-header">XGBoost 参数官方文档翻译</h1>
+        <div class="collection-info">
+          
+          <span class="meta-info">
+            <span class="octicon octicon-calendar"></span> 2018/02/28
+          </span>
+          
+          
+          <span class="meta-info">
+            <span class="octicon octicon-file-directory"></span>
+            <a href="http://localhost:4000/categories/#机器学习" title="机器学习">机器学习</a>
+          </span>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+<!-- / .banner -->
+<section class="container content">
+<div class="columns">
+  <div class="column three-fourths" >
+    <article class="article-content markdown-body">
+    <p>xgboost参数非常之多，打算借着翻译<a href="https://github.com/dmlc/xgboost/blob/master/doc/parameter.md"><em>官方文档</em></a>理解一下xgboost的相关参数，以下是xgboost官方文档关于参数的全部翻译。</p>
+
+<h1 id="xgboost-parameters">XGBoost Parameters</h1>
+<p>Before running XGboost, we must set three types of parameters: general parameters, booster parameters and task parameters.</p>
+<ul>
+  <li>General parameters relates to which booster we are using to do boosting, commonly tree or linear model</li>
+  <li>Booster parameters depends on which booster you have chosen</li>
+  <li>Learning Task parameters that decides on the learning scenario, for example, regression tasks may use different parameters with ranking tasks.</li>
+  <li>Command line parameters that relates to behavior of CLI version of xgboost.</li>
+</ul>
+
+<h2 id="parameters-in-r-package">Parameters in R Package</h2>
+<p>In R-package, you can use .(dot) to replace underscore in the parameters, for example, you can use max.depth as max_depth. The underscore parameters are also valid in R.</p>
+
+<h2 id="general-parameters">General Parameters</h2>
+<blockquote>
+  <p>general Parameters 主要是用于选择booster ，一般是tree或者线性模型</p>
+</blockquote>
+
+<ul>
+  <li>booster [default=gbtree]
+    <ul>
+      <li>which booster to use, can be gbtree, gblinear or dart. gbtree and dart use tree based model while gblinear uses linear function.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>booster 默认参数gbtree</li>
+    <li>gbtree 和 dart 用于tree 模型</li>
+    <li>gblinear 用于linear 模型</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>silent [default=0]
+    <ul>
+      <li>0 means printing running messages, 1 means silent mode.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>silent 默认参数0</li>
+    <li>0 代表 打印运行时过程的信息</li>
+    <li>1 代表 不打印信息</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>nthread [default to maximum number of threads available if not set]
+    <ul>
+      <li>number of parallel threads used to run xgboost</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>nthread 默认最大线程数运行xgboost</li>
+    <li>n 为需要运行的线程数</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>num_pbuffer [set automatically by xgboost, no need to be set by user]
+    <ul>
+      <li>size of prediction buffer, normally set to number of training instances. The buffers are used to save the prediction results of last boosting step.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li><strong>num_pbuffer</strong> xgboost 自动设置，无需用户自己设置（高亮的都是自己暂时不理解的）</li>
+    <li>num_pbuffer 是关于预测的缓存的大小，一般设置的是训练实例数。这个缓存用于
+保存bootsting 最后一般的预测结果</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>num_feature [set automatically by xgboost, no need to be set by user]
+    <ul>
+      <li>feature dimension used in boosting, set to maximum dimension of the feature</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li><strong>num_feature</strong> xgboost 自动设置，无需用户自己设置（高亮的都是自己暂时不理解的）</li>
+    <li>在boosting中使用feature的维度，会设置成feature最大的维度</li>
+  </ul>
+</blockquote>
+
+<h2 id="parameters-for-tree-booster">Parameters for Tree Booster</h2>
+<blockquote>
+  <ul>
+    <li>Tree booster 的参数</li>
+    <li>tree booster，它的表现远远胜过linear booster</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>eta [default=0.3, alias: learning_rate]
+    <ul>
+      <li>step size shrinkage used in update to prevents overfitting. After each boosting step, we can directly get the weights of new features. and eta actually shrinks the feature weights to make the boosting process more conservative.</li>
+      <li>range: [0,1]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>eta 默认是0.3，和sklearn learning_rate概念一样。参数值的范围是0~1之间</li>
+    <li>为了防止过拟合，更新过程中会进行收缩步长。</li>
+    <li>在每次提升计算之后，算法会直接获得新特征的权重。</li>
+    <li>eta通过缩减特征的权重使得 提升过程(boosting process) 更加收敛(conservative)也就是说：可以提高模型的鲁棒性（robust）</li>
+    <li>典型值为0.01-0.2</li>
+    <li>每次更新树的时候，更新的部分的/之前树的部分</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>gamma [default=0, alias: min_split_loss]
+    <ul>
+      <li>minimum loss reduction required to make a further partition on a leaf node of the tree. The larger, the more conservative the algorithm will be.</li>
+      <li>range: [0,∞]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>gamma 默认是0，和min_split_loss概念一样？？参数值的范围是0~∞之间</li>
+    <li>最小化loss reduction 需要进一步对于树的叶子节点进行分割。树越大，算法越收敛（conservative）</li>
+    <li>在节点分裂时，只有分裂后损失函数的值下降了，才会分裂这个节点。Gamma指定了节点分裂所需的最小损失函数下降值。</li>
+    <li>这个参数的值越大，算法越保守。这个参数的值和损失函数息息相关，所以是需要调整的</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>max_depth [default=6]
+    <ul>
+      <li>maximum depth of a tree, increase this value will make the model more complex / likely to be overfitting. 0 indicates no limit, limit is required for depth-wise grow policy.</li>
+      <li>range: [0,∞]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>max_depth 默认是6，参数值的范围是0~∞之间</li>
+    <li>设置树的最大深度，值越大，越复杂，越容易过拟合。</li>
+    <li>0 代表不做限制，<strong>limit is required for depth-wise grow policy？？</strong></li>
+    <li>这个值也是用来避免过拟合的。max_depth越大，模型会学到更具体更局部的样本。</li>
+    <li>需要使用CV函数来进行调优。</li>
+    <li>典型值：3-10</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>min_child_weight [default=1]
+    <ul>
+      <li>minimum sum of instance weight (hessian) needed in a child. If the tree partition step results in a leaf node with the sum of instance weight less than min_child_weight, then the building process will give up further partitioning. In linear regression mode, this simply corresponds to minimum number of instances needed to be in each node. The larger, the more conservative the algorithm will be.</li>
+      <li>range: [0,∞]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>min_child_weight 默认是1，参数值的范围是0~∞之间</li>
+    <li><strong>孩子节点中最小的样本权重和</strong>。</li>
+    <li>当在<strong>tree拆分</strong>过程中，出现一个叶子节点的样本权重和小于min_child_weight时，则拆分结束。在线性回归模型中，这个参数在每个<strong>节点？？指的是什么</strong>仅和所需要的最小样本数。该成熟越大算法越conservative</li>
+    <li>这个参数用于避免过拟合。当它的值较大时，可以避免模型学习到局部的特殊样本。</li>
+    <li>但是如果这个值过高，会导致欠拟合。这个参数需要使用CV来调整。</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>max_delta_step [default=0]
+    <ul>
+      <li>Maximum delta step we allow each tree’s weight estimation to be. If the value is set to 0, it means there is no constraint. If it is set to a positive value, it can help making the update step more conservative. Usually this parameter is not needed, but it might help in logistic regression when class is extremely imbalanced. Set it to value of 1-10 might help control the update</li>
+      <li>range: [0,∞]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>max_delta_step 默认是0，参数值的范围是0~∞之间</li>
+    <li>Maximum delta step就是我们对每棵树的权重的评估。</li>
+    <li>如果值设置为0，代表不做限制</li>
+    <li>如果值设置为正数，可以使 update step更加收敛。一般来说，这个参数不需要，但是对于逻辑回归出现的类型极端不平衡时候,会有作用。</li>
+    <li>参数设置为1-10之间控制update</li>
+    <li>这个参数一般用不到，但是你可以挖掘出来它更多的用处。</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>subsample [default=1]
+    <ul>
+      <li>subsample ratio of the training instance. Setting it to 0.5 means that XGBoost randomly collected half of the data instances to grow trees and this will prevent overfitting.</li>
+      <li>range: (0,1]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>subsample 默认是1，参数值的范围是0~1之间，不包括0</li>
+    <li>根据比例，设置是训练样本的子样本数据。如果设置为0.5，意味着，Xgboost随机选择训练样本的一半数据进行grow tree,这样做目的是防止过拟合。</li>
+    <li>和GBM中的subsample参数一模一样。这个参数控制对于每棵树，随机采样的比例。</li>
+    <li>减小这个参数的值，算法会更加保守，避免过拟合。但是，如果这个值设置得过小，它可能会导致欠拟合。</li>
+    <li>典型值：0.5-1</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>colsample_bytree [default=1]
+    <ul>
+      <li>subsample ratio of columns when constructing each tree.</li>
+      <li>range: (0,1]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>colsample_bytree 默认是1，参数值的范围是0~1之间，不包括0</li>
+    <li>根据比例，设置是训练样本的列的比例（个人理解，算是特征比例），进行构建树</li>
+    <li>典型值：0.5-1</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>colsample_bylevel [default=1]
+    <ul>
+      <li>subsample ratio of columns for each split, in each level.</li>
+      <li>range: (0,1]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>colsample_bylevel 默认是1，参数值的范围是0~1之间，不包括0</li>
+    <li>根据比例，设置是训练样本<strong>每个层级</strong>的列的比例</li>
+    <li>我个人一般不太用这个参数，因为subsample参数和colsample_bytree参数可以起到相同的作用。但是如果感兴趣，可以挖掘这个参数更多的用处。</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>lambda [default=1, alias: reg_lambda]
+    <ul>
+      <li>L2 regularization term on weights, increase this value will make model more conservative.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>lambda 默认是1，和<strong>reg_lambda</strong>概念一样(和Ridge regression类似)</li>
+    <li><strong>L2 正则术语（L2惩罚系数？？）</strong>，增加该值会让模型更加收敛</li>
+    <li>这个参数是用来控制XGBoost的正则化部分的。虽然大部分数据科学家很少用到这个参数，但是这个参数在减少过拟合上还是可以挖掘出更多用处的。</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>alpha [default=0, alias: reg_alpha]
+    <ul>
+      <li>L1 regularization term on weights, increase this value will make model more conservative.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>alpha 默认是0，和<strong>reg_alpha</strong>概念一样(和Lasso regression类似)</li>
+    <li><strong>L1 正则术语（L1惩罚系数？？）</strong>，增加该值会让模型更加收敛</li>
+    <li>可以应用在很高维度的情况下，使得算法的速度更快。</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>tree_method, string [default=’auto’]
+    <ul>
+      <li>The tree construction algorithm used in XGBoost(see description in the <a href="http://arxiv.org/abs/1603.02754">reference paper</a>)</li>
+      <li>Distributed and external memory version only support approximate algorithm.</li>
+      <li>Choices: {‘auto’, ‘exact’, ‘approx’, ‘hist’, ‘gpu_exact’, ‘gpu_hist’}
+        <ul>
+          <li>‘auto’: Use heuristic to choose faster one.
+            <ul>
+              <li>For small to medium dataset, exact greedy will be used.</li>
+              <li>For very large-dataset, approximate algorithm will be chosen.</li>
+              <li>Because old behavior is always use exact greedy in single machine,
+user will get a message when approximate algorithm is chosen to notify this choice.</li>
+            </ul>
+          </li>
+          <li>‘exact’: Exact greedy algorithm.</li>
+          <li>‘approx’: Approximate greedy algorithm using sketching and histogram.</li>
+          <li>‘hist’: Fast histogram optimized approximate greedy algorithm. It uses some performance improvements such as bins caching.</li>
+          <li>‘gpu_exact’: GPU implementation of exact algorithm.</li>
+          <li>‘gpu_hist’: GPU implementation of hist algorithm.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>tree_method, 参数是string类型，默认’auto‘，</li>
+    <li>主要用于构建树的算法（<a href="http://arxiv.org/abs/1603.02754">参考论文</a>)</li>
+    <li>参数可以选择{‘auto’, ‘exact’, ‘approx’, ‘hist’, ‘gpu_exact’, ‘gpu_hist’}</li>
+    <li>’auto‘：用于启发式，选择更快的方式
+      <ul>
+        <li>数据量小型和中型的，会自动使用’exact‘模式</li>
+        <li>数据量特别大的话，会自动使用’approx‘模型</li>
+        <li>由于之前一直在单元的机器学习里都是使用’exact‘模式，所以如果自动选择’approx‘模式会有提示</li>
+      </ul>
+    </li>
+    <li>’exact‘：纯贪婪算法</li>
+    <li>’approx‘：近似贪婪算法，使用<strong>sketching and histogram</strong>方法</li>
+    <li>’hist’快速histogram 优化后的近似贪婪算法。用在性能的提高上，例如<strong>“bins caching”</strong></li>
+    <li>‘gpu_exact’： 用GPU实施exact 算法</li>
+    <li>‘gpu_hist’：用GPU实施hist 算法</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>sketch_eps, [default=0.03]
+    <ul>
+      <li>This is only used for approximate greedy algorithm.</li>
+      <li>This roughly translated into <code class="highlighter-rouge">O(1 / sketch_eps)</code> number of bins.
+Compared to directly select number of bins, this comes with theoretical guarantee with sketch accuracy.</li>
+      <li>Usually user does not have to tune this.
+but consider setting to a lower number for more accurate enumeration.</li>
+      <li>range: (0, 1)</li>
+    </ul>
+
+    <blockquote>
+      <ul>
+        <li><strong>sketch_eps</strong>：默认0.03，范围是0~1，不包括0和1</li>
+        <li>本参数只能用在近似贪婪算法上</li>
+        <li>比较粗的转成0和1</li>
+        <li>一般，用户不需要关注这个参数。</li>
+        <li>总体而言，参数值越低，越能得到准确的值</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>scale_pos_weight, [default=1]
+    <ul>
+      <li>Control the balance of positive and negative weights, useful for unbalanced classes. A typical value to consider: sum(negative  cases) / sum(positive cases) See <a href="how_to/param_tuning.md">Parameters Tuning</a> for more discussion. Also see Higgs Kaggle competition demo for examples: <a href="../demo/kaggle-higgs/higgs-train.R">R</a>, <a href="../demo/kaggle-higgs/higgs-numpy.py">py1</a>, <a href="../demo/kaggle-higgs/higgs-cv.py">py2</a>, <a href="../demo/guide-python/cross_validation.py">py3</a></li>
+    </ul>
+
+    <blockquote>
+      <ul>
+        <li>scale_pos_weight：默认1</li>
+        <li>本参数主要控制正数和负数的权重，用在对于正负不平衡的类型的数据上。一般值为
+负例样本总数/正例样本总数</li>
+        <li>可以参考<a href="http://xgboost.readthedocs.io/en/latest/how_to/param_tuning.html">Parameters Tuning</a>有更多讨论</li>
+        <li>也可以参考Kaggle比赛demo样例
+<a href="https://github.com/dmlc/xgboost/blob/master/demo/kaggle-higgs/higgs-numpy.py">py1</a>
+<a href="https://github.com/dmlc/xgboost/blob/master/demo/kaggle-higgs/higgs-cv.py">py2</a>, <a href="https://github.com/dmlc/xgboost/blob/master/demo/guide-python/cross_validation.py">py3</a></li>
+        <li>总体而言，参数值越低，越能得到准确的值</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>updater, [default=’grow_colmaker,prune’]
+    <ul>
+      <li>A comma separated string defining the sequence of tree updaters to run, providing a modular way to construct and to modify the trees. This is an advanced parameter that is usually set automatically, depending on some other parameters. However, it could be also set explicitly by a user. The following updater plugins exist:
+        <ul>
+          <li>‘grow_colmaker’: non-distributed column-based construction of trees.</li>
+          <li>‘distcol’: distributed tree construction with column-based data splitting mode.</li>
+          <li>‘grow_histmaker’: distributed tree construction with row-based data splitting based on global proposal of histogram counting.</li>
+          <li>‘grow_local_histmaker’: based on local histogram counting.</li>
+          <li>‘grow_skmaker’: uses the approximate sketching algorithm.</li>
+          <li>‘sync’: synchronizes trees in all distributed nodes.</li>
+          <li>‘refresh’: refreshes tree’s statistics and/or leaf values based on the current data. Note that no random subsampling of data rows is performed.</li>
+          <li>‘prune’: prunes the splits where loss &lt; min_split_loss (or gamma).</li>
+        </ul>
+      </li>
+      <li>In a distributed setting, the implicit updater sequence value would be adjusted as follows:
+        <ul>
+          <li>‘grow_histmaker,prune’ when  dsplit=’row’ (or default) and prob_buffer_row == 1 (or default); or when data has multiple sparse pages</li>
+          <li>‘grow_histmaker,refresh,prune’ when  dsplit=’row’ and prob_buffer_row &lt; 1</li>
+          <li>‘distcol’ when dsplit=’col’</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li><strong>updater</strong>：默认’grow_colmaker,prune’,通过构造tree 列表可以tree之间可用逗号(,)进行分开,这种tree 列表方式可以构建和修改trees</li>
+    <li>这种高级参数，依赖其他的参数，一般设置为自动化。</li>
+    <li>当然用户也可以明确指明所使用的updater 插件</li>
+    <li>‘grow_colmaker’:基于列进行构建 非分布式tree</li>
+    <li>‘distcol’:基于列的数据的分割构建分布式tree</li>
+    <li><strong>‘grow_histmaker’</strong>：基于行的数据分割构建分布式tree，行数据的分割是根据gloabl histogram 统计后的建议</li>
+    <li>‘grow_local_histmaker’：基于local histogram统计后的建议构建树。</li>
+    <li>‘grow_skmaker’:使用近似sketching算法构建树</li>
+    <li>‘sync’：在所有分布式节点同步树</li>
+    <li>‘refresh’:基于目的数据，刷新树的统计和叶子的值。注意非随机的子样本数据的行将被执行</li>
+    <li>‘prune’:去掉loss 小于min_split_loss (or gamma)的分支(splits)</li>
+    <li>在分布式设置里，updater的内在序列值可以这样调整：</li>
+    <li>当数据具有非常多的稀疏页或者dsplit=’row’ (or default) 且 prob_buffer_row == 1 (or default)的时候，参数可以是’grow_histmaker,prune’</li>
+    <li>当dsplit=’row’ 且 prob_buffer_row &lt; 1时，参数可以是’grow_histmaker,refresh,prune’</li>
+    <li>当dsplit=’col’，参数可以为’distcol’</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>refresh_leaf, [default=1]
+    <ul>
+      <li>This is a parameter of the ‘refresh’ updater plugin. When this flag is true, tree leafs as well as tree nodes’ stats are updated. When it is false, only node stats are updated.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>refresh_leaf：默认值为1</li>
+    <li>这是updater参数为’refresh’的一个插件</li>
+    <li>当值为1，树的叶子和节点值都更新</li>
+    <li>当值为0，只更新节点</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>process_type, [default=’default’]
+    <ul>
+      <li>A type of boosting process to run.</li>
+      <li>Choices: {‘default’, ‘update’}
+        <ul>
+          <li>‘default’: the normal boosting process which creates new trees.</li>
+          <li>‘update’: starts from an existing model and only updates its trees. In each boosting iteration, a tree from the initial model is taken, a specified sequence of updater plugins is run for that tree, and a modified tree is added to the new model. The new model would have either the same or smaller number of trees, depending on the number of boosting iteratons performed. Currently, the following built-in updater plugins could be meaningfully used with this process type: ‘refresh’, ‘prune’. With ‘update’, one cannot use updater plugins that create new nrees.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>process_type：默认值为’default’</li>
+    <li>参数是提高<strong>process</strong> 的一种方式</li>
+    <li>参数有两个可选值{‘default’, ‘update’}</li>
+    <li>‘default’：标准提高process 方式，通过创建新的树</li>
+    <li>‘update’：从一个已有的模型里开始，只更新该模型的树。在每个提高的运算中，最开始的模型的树，被updater 插件的序列值（参考updater参数说明）运行最初的tree，这样经过修改过的tree，放入新的模型中。新的模型拥有tree的数目和之前比有可能相同或者比之前要小，取决于boosting iteratons的有多少数量被执行。目前，updater的参数是’refresh’, ‘prune’使用’update’参数非常有用。updater 插件不产生新trees</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>grow_policy, string [default=’depthwise’]
+    <ul>
+      <li>Controls a way new nodes are added to the tree.</li>
+      <li>Currently supported only if <code class="highlighter-rouge">tree_method</code> is set to ‘hist’.</li>
+      <li>Choices: {‘depthwise’, ‘lossguide’}
+        <ul>
+          <li>‘depthwise’: split at nodes closest to the root.</li>
+          <li>‘lossguide’: split at nodes with highest loss change.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>grow_policy：默认值为’depthwise’</li>
+    <li>该参数是一种在树上添加新节点的方式</li>
+    <li>只有<code class="highlighter-rouge">tree_method</code> 的参数是’hist’的时候才有用</li>
+    <li>两个参数值：’depthwise’, ‘lossguide’
+      <ul>
+        <li>‘depthwise’: 拆分出距离根节点最近的节点.</li>
+        <li>‘lossguide’: 拆分出loss 变化最大的节点.</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>max_leaves, [default=0]
+    <ul>
+      <li>Maximum number of nodes to be added. Only relevant for the ‘lossguide’ grow policy.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>max_leaves：默认值为 0</li>
+    <li>添加最大的节点数，只有grow policy设置为’lossguide’才有用</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>max_bin, [default=256]
+    <ul>
+      <li>This is only used if ‘hist’ is specified as <code class="highlighter-rouge">tree_method</code>.</li>
+      <li>Maximum number of discrete bins to bucket continuous features.</li>
+      <li>Increasing this number improves the optimality of splits at the cost of higher computation time.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li><strong>max_bin</strong>：默认值为 256</li>
+    <li>只有’tree_method‘的参数是’hist’ 才有用</li>
+    <li>该参数是对于连续特征的最大数量的分割箱</li>
+    <li>增加数量可以提高splits的优化性，代价是需要更多的运算时间</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>predictor, [default=’cpu_predictor’]
+    <ul>
+      <li>The type of predictor algorithm to use. Provides the same results but allows the use of GPU or CPU.
+        <ul>
+          <li>‘cpu_predictor’: Multicore CPU prediction algorithm.</li>
+          <li>‘gpu_predictor’: Prediction using GPU. Default for ‘gpu_exact’ and ‘gpu_hist’ tree method.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>predictor：默认值为 ‘cpu_predictor’</li>
+    <li>选择GPU还是CPU计算的预测器，当然最终结果是一样的</li>
+    <li>‘cpu_predictor’:多核CPU预测算法</li>
+    <li>‘gpu_predictor’:用GPU预测,默认’gpu_exact’ 和 ‘gpu_hist’ 的tree method</li>
+  </ul>
+</blockquote>
+
+<h2 id="additional-parameters-for-dart-booster">Additional parameters for Dart Booster</h2>
+<blockquote>
+  <ul>
+    <li>Dart Booster 额外的一些参数</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>sample_type [default=”uniform”]
+    <ul>
+      <li>type of sampling algorithm.
+        <ul>
+          <li>“uniform”: dropped trees are selected uniformly.</li>
+          <li>“weighted”: dropped trees are selected in proportion to weight.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>sample_type：默认值为 “uniform”</li>
+    <li>参数是一种取sampling 的算法</li>
+    <li>“uniform”: 均匀的去掉trees.</li>
+    <li>“weighted”: 按照一定的权重去掉trees.</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>normalize_type [default=”tree”]
+    <ul>
+      <li>type of normalization algorithm.
+        <ul>
+          <li>“tree”: new trees have the same weight of each of dropped trees.
+            <ul>
+              <li>weight of new trees are 1 / (k + learning_rate)</li>
+              <li>dropped trees are scaled by a factor of k / (k + learning_rate)</li>
+            </ul>
+          </li>
+          <li>“forest”: new trees have the same weight of sum of dropped trees (forest).
+            <ul>
+              <li>weight of new trees are 1 / (1 + learning_rate)</li>
+              <li>dropped trees are scaled by a factor of 1 / (1 + learning_rate)</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>normalize_type：默认值为 “tree”</li>
+    <li>参数是一种标准化的算法，个人觉得k应该是指dropped掉的trees的数量</li>
+    <li>“tree”:新trees和dropped掉的每颗tree有相同的权重</li>
+    <li>新trees的权重是1 / (k + learning_rate)</li>
+    <li>dropped掉的 trees 按照  k / (k + learning_rate)缩放</li>
+    <li>“forest”: 新trees和drop掉的数目的总和有相同的权重
+      <ul>
+        <li>新trees 的权重1 / (1 + learning_rate)</li>
+        <li>dropped掉的 trees 按照  1 / (1 + learning_rate)的权重缩放</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>rate_drop [default=0.0]
+    <ul>
+      <li>dropout rate (a fraction of previous trees to drop during the dropout).</li>
+      <li>range: [0.0, 1.0]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>rate_drop：默认值为 0，值的范围[0.0~1.0]</li>
+    <li>dropout的比例（就是对于之前的tree，drop掉的比例）</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>one_drop [default=0]
+    <ul>
+      <li>when this flag is enabled, at least one tree is always dropped during the dropout (allows Binomial-plus-one or epsilon-dropout from the original DART paper).</li>
+    </ul>
+
+    <blockquote>
+      <ul>
+        <li><strong>one_drop</strong>：默认值为 0</li>
+        <li>如果值为1，至少有一个tree，在dropout期间总会被去掉的</li>
+      </ul>
+    </blockquote>
+  </li>
+  <li>skip_drop [default=0.0]
+    <ul>
+      <li>Probability of skipping the dropout procedure during a boosting iteration.
+        <ul>
+          <li>If a dropout is skipped, new trees are added in the same manner as gbtree.</li>
+          <li>Note that non-zero skip_drop has higher priority than rate_drop or one_drop.</li>
+        </ul>
+      </li>
+      <li>range: [0.0, 1.0]</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>skip_drop：默认值为 0.0，参数值范围[0.0~1.0]</li>
+    <li>在提升迭代期间，跳过丢弃过程的概率</li>
+    <li>如果一个dropout 被跳过，新trees 将会和gbtree一样的形式增加上</li>
+    <li>注意，非0 skip_drop 比 rate_drop or one_drop有更高有限权</li>
+  </ul>
+</blockquote>
+
+<h2 id="parameters-for-linear-booster">Parameters for Linear Booster</h2>
+<blockquote>
+  <ul>
+    <li>线性bootser</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>lambda [default=0, alias: reg_lambda]
+    <ul>
+      <li>L2 regularization term on weights, increase this value will make model more conservative.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>lambda 默认是0，和<strong>reg_lambda</strong>概念一样</li>
+    <li><strong>L2 正则术语（L2惩罚系数？？）</strong>，增加该值会让模型更加收敛</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>alpha [default=0, alias: reg_alpha]
+    <ul>
+      <li>L1 regularization term on weights, increase this value will make model more conservative.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>alpha 默认是0，和<strong>reg_alpha</strong>概念一样</li>
+    <li><strong>L1 正则术语（L1惩罚系数？？）</strong>，增加该值会让模型更加收敛</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>lambda_bias [default=0, alias: reg_lambda_bias]
+    <ul>
+      <li>L2 regularization term on bias (no L1 reg on bias because it is not important)</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>lambda_bias 默认是0，和<strong>reg_lambda_bias</strong>概念一样</li>
+    <li><strong>在偏置上的L2 正则</strong>，在L1上没有偏置项的正则，因为L1时偏置不重要</li>
+  </ul>
+</blockquote>
+
+<h2 id="parameters-for-tweedie-regression">Parameters for Tweedie Regression</h2>
+<blockquote>
+  <ul>
+    <li><a href="https://en.wikipedia.org/wiki/Tweedie_distribution">Tweedie 分布</a></li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>tweedie_variance_power [default=1.5]
+    <ul>
+      <li>parameter that controls the variance of the Tweedie distribution
+        <ul>
+          <li>var(y) ~ E(y)^tweedie_variance_power</li>
+        </ul>
+      </li>
+      <li>range: (1,2)</li>
+      <li>set closer to 2 to shift towards a gamma distribution</li>
+      <li>set closer to 1 to shift towards a Poisson distribution.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>tweedie_variance_power 默认值为1.5，范围(1~2)</li>
+    <li>参数变量控制Tweedie 分布
+      <ul>
+        <li>var(y) ~ E(y)^tweedie_variance_power</li>
+      </ul>
+    </li>
+    <li>参数值离2越靠近，该分布越接近gamma分布</li>
+    <li>参数值离1越靠近，该分布越接近泊松分布</li>
+  </ul>
+</blockquote>
+
+<h2 id="learning-task-parameters">Learning Task Parameters</h2>
+<blockquote>
+  <ul>
+    <li>学习任务参数</li>
+  </ul>
+</blockquote>
+
+<p>Specify the learning task and the corresponding learning objective. The objective options are below:</p>
+<blockquote>
+  <ul>
+    <li>指定学习任务和学习目标。学习目标如下：</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>objective [default=reg:linear]
+    <ul>
+      <li>“reg:linear” –linear regression</li>
+      <li>“reg:logistic” –logistic regression</li>
+      <li>“binary:logistic” –logistic regression for binary classification, output probability</li>
+      <li>“binary:logitraw” –logistic regression for binary classification, output score before logistic transformation</li>
+      <li>“gpu:reg:linear”, “gpu:reg:logistic”, “gpu:binary:logistic”, gpu:binary:logitraw” –versions
+of the corresponding objective functions evaluated on the GPU; note that like the GPU histogram algorithm,
+they can only be used when the entire training session uses the same dataset</li>
+      <li>“count:poisson” –poisson regression for count data, output mean of poisson distribution
+        <ul>
+          <li>max_delta_step is set to 0.7 by default in poisson regression (used to safeguard optimization)</li>
+        </ul>
+      </li>
+      <li>“multi:softmax” –set XGBoost to do multiclass classification using the softmax objective, you also need to set num_class(number of classes)</li>
+      <li>“multi:softprob” –same as softmax, but output a vector of ndata * nclass, which can be further reshaped to ndata, nclass matrix. The result contains predicted probability of each data point belonging to each class.</li>
+      <li>“rank:pairwise” –set XGBoost to do ranking task by minimizing the pairwise loss</li>
+      <li>“reg:gamma” –gamma regression with log-link. Output is a mean of gamma distribution. It might be useful, e.g., for modeling insurance claims severity, or for any outcome that might be <a href="https://en.wikipedia.org/wiki/Gamma_distribution#Applications">gamma-distributed</a></li>
+      <li>“reg:tweedie” –Tweedie regression with log-link. It might be useful, e.g., for modeling total loss in insurance, or for any outcome that might be <a href="https://en.wikipedia.org/wiki/Tweedie_distribution#Applications">Tweedie-distributed</a>.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>objective,默认值是reg:linear</li>
+    <li>“reg:linear” ：线性回归</li>
+    <li>“reg:logistic”：逻辑回归</li>
+    <li>“binary:logistic”：二分类逻辑回归，输出概率</li>
+    <li>“binary:logitraw”：二分类逻辑回归，输出是逻辑为0/1的前一步的分数</li>
+    <li>“gpu:reg:linear”, “gpu:reg:logistic”, “gpu:binary:logistic”：用GPU跑对应的回归，请注意，像GPU直方图算法一样，在整个训练过程中只能用相同的dataset</li>
+    <li>count:poisson”：计数问题的泊松回归，输出为泊松分布的平均值
+      <ul>
+        <li>在泊松分布中，max_delta_step参数值默认为0.7（用于维护优化）</li>
+      </ul>
+    </li>
+    <li>“multi:softmax”：用于Xgboost 做多分类问题，需要设置num_class（分类的个数）</li>
+    <li>“multi:softprob”：和softmax一样，只是输出的是一个向量（vector）ndata*nclass，进一步可以reshape成ndata，nclass的矩阵。结果就是包含每个数据属于每一类的概率</li>
+    <li>“rank:pairwise”：让Xgboost 做排名任务，通过最小化<a href="https://en.wikipedia.org/wiki/Learning_to_rank#Pairwise_approach"><strong>pairwise loss</strong></a>(Learn to rank的一种方法)</li>
+    <li>“reg:gamma”：gamma回归带有<strong>日志链接（log-link）？？</strong> 。输出gamma分布的均值。对于 保险索赔严重性建模 或者是任何符合<a href="(https://en.wikipedia.org/wiki/Gamma_distribution#Applications)">gamma分布</a>输出 可能是有用</li>
+    <li>“reg:tweedie”：Tweedie回归带有<strong>日志链接（log-link）？？</strong> . 对于 保险中的全部损失进行建模建模 或者是任何符合<a href="https://en.wikipedia.org/wiki/Tweedie_distribution#Applications">tweedie分布</a>)输出 可能是有用。</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>base_score [default=0.5]
+    <ul>
+      <li>the initial prediction score of all instances, global bias</li>
+      <li>for sufficient number of iterations, changing this value will not have too much effect.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>base_score,默认值为0.5</li>
+    <li>所有实例的初始预测分数，全局偏置</li>
+    <li>有足够的迭代次数，改变该值并没有多少影响</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>eval_metric [default according to objective]
+    <ul>
+      <li>evaluation metrics for validation data, a default metric will be assigned according to objective (rmse for regression, and error for classification, mean average precision for ranking )</li>
+      <li>User can add multiple evaluation metrics, for python user, remember to pass the metrics in as list of parameters pairs instead of map, so that latter ‘eval_metric’ won’t override previous one</li>
+      <li>The choices are listed below:
+        <ul>
+          <li>“rmse”: <a href="http://en.wikipedia.org/wiki/Root_mean_square_error">root mean square error</a></li>
+          <li>“mae”: <a href="https://en.wikipedia.org/wiki/Mean_absolute_error">mean absolute error</a></li>
+          <li>“logloss”: negative <a href="http://en.wikipedia.org/wiki/Log-likelihood">log-likelihood</a></li>
+          <li>“error”: Binary classification error rate. It is calculated as #(wrong cases)/#(all cases). For the predictions, the evaluation will regard the instances with prediction value larger than 0.5 as positive instances, and the others as negative instances.</li>
+          <li>“error@t”: a different than 0.5 binary classification threshold value could be specified by providing a numerical value through ‘t’.</li>
+          <li>“merror”: Multiclass classification error rate. It is calculated as #(wrong cases)/#(all cases).</li>
+          <li>“mlogloss”: <a href="https://www.kaggle.com/wiki/LogLoss">Multiclass logloss</a></li>
+          <li>“auc”: <a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_curve">Area under the curve</a> for ranking evaluation.</li>
+          <li>“ndcg”:<a href="http://en.wikipedia.org/wiki/NDCG">Normalized Discounted Cumulative Gain</a></li>
+          <li>“map”:<a href="http://en.wikipedia.org/wiki/Mean_average_precision#Mean_average_precision">Mean average precision</a></li>
+          <li>“ndcg@n”,”map@n”: n can be assigned as an integer to cut off the top positions in the lists for evaluation.</li>
+          <li>“ndcg-“,”map-“,”ndcg@n-“,”map@n-“: In XGBoost, NDCG and MAP will evaluate the score of a list without any positive samples as 1. By adding “-“ in the evaluation metric XGBoost will evaluate these score as 0 to be consistent under some conditions.training repeatedly</li>
+        </ul>
+      </li>
+      <li>“poisson-nloglik”: negative log-likelihood for Poisson regression</li>
+      <li>“gamma-nloglik”: negative log-likelihood for gamma regression</li>
+      <li>“gamma-deviance”: residual deviance for gamma regression</li>
+      <li>“tweedie-nloglik”: negative log-likelihood for Tweedie regression (at a specified value of the tweedie_variance_power parameter)</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>eval_metric:默认值取决于目标</li>
+    <li>对于验证集的评估指标。默认指标根据目标的不同有所不同（回归问题指标：rmse，分类问题：error，排序问题：mean）</li>
+    <li>用户可以添加多个评估指标。对于Python用户要以list传递参数对给程序，而不是map，这样后一个指标就不会覆盖前一个</li>
+    <li>参数列表如下：</li>
+    <li>’rmse’<a href="http://en.wikipedia.org/wiki/Root_mean_square_error">root mean square error</a>剩余标准差(均方根误差)</li>
+    <li>“mae”: <a href="https://en.wikipedia.org/wiki/Mean_absolute_error">mean absolute error</a>平均绝对误差</li>
+    <li><strong>“logloss”</strong>: negative 负对数似然函数值 <a href="http://en.wikipedia.org/wiki/Log-likelihood">log-likelihood</a></li>
+    <li>”error”：二分类错误率，计算公式（错误cases）/（全部cases），评估中，对于预测值大于0.5位正例，剩下为负例</li>
+    <li>“error@t”：二分类错误率，通过t指定阈值，而非0.5，超过阈值为正例，其余为负例</li>
+    <li>“merror”：多分类错误率。计算公式：（错误cases）/（全部cases）</li>
+    <li>“mlogloss”: <a href="https://www.kaggle.com/wiki/LogLoss">Multiclass logloss</a>多分类logloass</li>
+    <li>“<strong>auc</strong>”: <a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_curve">Area under the curve</a> for ranking evaluation.曲线下面积-相关的ROC曲线</li>
+    <li>“<strong>ndcg”</strong>:<a href="http://en.wikipedia.org/wiki/NDCG">Normalized Discounted Cumulative Gain</a>折扣累积收益（DCG）是衡量排名质量的一个指标。属于信息检索范围（Information retrieval）</li>
+    <li>“<strong>map</strong>”:<a href="http://en.wikipedia.org/wiki/Mean_average_precision#Mean_average_precision">Mean average precision</a> 属于信息检索范围（Information retrieval）</li>
+    <li><strong>“ndcg@n”,”map@n”</strong>: 其中n为整数，在评估列表中截断顶部位置</li>
+    <li>“ndcg-“,”map-“,”ndcg@n-“,”map@n-“:在XGBoost中，NDCG和MAP将评估没有任何正面样本的列表的评分为1.通过在评估量度中添加“ - ”，XGBoost会在某些情况下评估这些评分为0，然后不断的训练</li>
+    <li>“poisson-nloglik”：泊松分布回归的负似然性</li>
+    <li>“gamma-nloglik”: gamma回归的负<a href="https://en.wikipedia.org/wiki/Likelihood_function#Example:_the_gamma_distribution">gamma分布似然性</a></li>
+    <li>“gamma-deviance”：γ回归的<strong>剩余偏差（residual deviance）</strong></li>
+    <li>“tweedie-nloglik”：Tweedie回归负向似然值</li>
+  </ul>
+</blockquote>
+
+<ul>
+  <li>seed [default=0]
+    <ul>
+      <li>random number seed.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>seed：默认为p0</li>
+    <li>随机的number种子</li>
+  </ul>
+</blockquote>
+
+<h2 id="command-line-parameters">Command Line Parameters</h2>
+<blockquote>
+  <ul>
+    <li>命令行参数</li>
+  </ul>
+</blockquote>
+
+<p>The following parameters are only used in the console version of xgboost</p>
+<ul>
+  <li>use_buffer [default=1]
+    <ul>
+      <li>Whether to create a binary buffer from text input. Doing so normally will speed up loading times</li>
+    </ul>
+  </li>
+  <li>num_round
+    <ul>
+      <li>The number of rounds for boosting</li>
+    </ul>
+  </li>
+  <li>data
+    <ul>
+      <li>The path of training data</li>
+    </ul>
+  </li>
+  <li>test:data
+    <ul>
+      <li>The path of test data to do prediction</li>
+    </ul>
+  </li>
+  <li>save_period [default=0]
+    <ul>
+      <li>the period to save the model, setting save_period=10 means that for every 10 rounds XGBoost will save the model, setting it to 0 means not saving any model during the training.</li>
+    </ul>
+  </li>
+  <li>task [default=train] options: train, pred, eval, dump
+    <ul>
+      <li>train: training using data</li>
+      <li>pred: making prediction for test:data</li>
+      <li>eval: for evaluating statistics specified by eval[name]=filename</li>
+      <li>dump: for dump the learned model into text format (preliminary)</li>
+    </ul>
+  </li>
+  <li>model_in [default=NULL]
+    <ul>
+      <li>path to input model, needed for test, eval, dump, if it is specified in training, xgboost will continue training from the input model</li>
+    </ul>
+  </li>
+  <li>model_out [default=NULL]
+    <ul>
+      <li>path to output model after training finishes, if not specified, will output like 0003.model where 0003 is number of rounds to do boosting.</li>
+    </ul>
+  </li>
+  <li>model_dir [default=models]
+    <ul>
+      <li>The output directory of the saved models during training</li>
+    </ul>
+  </li>
+  <li>fmap
+    <ul>
+      <li>feature map, used for dump model</li>
+    </ul>
+  </li>
+  <li>name_dump [default=dump.txt]
+    <ul>
+      <li>name of model dump file</li>
+    </ul>
+  </li>
+  <li>name_pred [default=pred.txt]
+    <ul>
+      <li>name of prediction file, used in pred mode</li>
+    </ul>
+  </li>
+  <li>pred_margin [default=0]
+    <ul>
+      <li>predict margin instead of transformed probability</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <ul>
+    <li>以下参数只能用在xgboost的控制台版本</li>
+    <li>use_buffer ：默认值为1
+      <ul>
+        <li>是否为输入创建二进制的缓存文件，缓存文件通常可以加速加载次数</li>
+      </ul>
+    </li>
+    <li>num_round
+      <ul>
+        <li>booting迭代的次数</li>
+      </ul>
+    </li>
+    <li>data
+      <ul>
+        <li>训练数据的路径</li>
+      </ul>
+    </li>
+    <li>test:data
+      <ul>
+        <li>测试数据的路径</li>
+      </ul>
+    </li>
+    <li>save_period ：默认为0
+      <ul>
+        <li>保存模型的周期，例如save_period=10，意味着训练每10周xgboost保存一次模型，0 代表不保存模型</li>
+      </ul>
+    </li>
+    <li>task：默认train，可以选择train, pred, eval, dump
+      <ul>
+        <li>train：训练使用数据</li>
+        <li>pred：对测试数据进行预测</li>
+        <li>eval：通过eval[name]=filename定义评价指标</li>
+        <li>dump：将习得的模型保存文本而是</li>
+      </ul>
+    </li>
+    <li><strong>model_in</strong>：默认NULL
+      <ul>
+        <li>指向模型的路径，测试、评价、保存数据都会用到，如果指明需要训练，xgboost将接着输入的模型进行训练</li>
+      </ul>
+    </li>
+    <li>model_out：默认NULL
+      <ul>
+        <li>训练结束后，输出的模型的路径，如果没有明确指明，模型输出将会是0003.model这样，0003代表boosting的第3次数训练的结果</li>
+      </ul>
+    </li>
+    <li>model_dir ：默认models
+      <ul>
+        <li>模型在训练期间保存的路径</li>
+      </ul>
+    </li>
+    <li><strong>fmap</strong>
+      <ul>
+        <li>特征地图，用作保存模型</li>
+      </ul>
+    </li>
+    <li>name_dump ：默认dump.txt
+      <ul>
+        <li>模型的保存文件</li>
+      </ul>
+    </li>
+    <li>name_pred：默认pred.txt
+      <ul>
+        <li>预测文件，用在pred 模式</li>
+      </ul>
+    </li>
+    <li><strong>pred_margin</strong>：默认值0
+      <ul>
+        <li>输出预测的边界而不是转换之后的概率</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<p>翻译中部分参考<a href="http://blog.csdn.net/han_xiaoyang/article/details/52665396">XGBoost参数调优完全指南</a></p>
+
+    </article>
+    <div class="share">
+      <div class="share-component"></div>
+    </div>
+    <div class="comment">
+      
+
+  
+
+  
+        <div id="gitalk-container"></div>
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+        <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+        <script>
+        var gitalk = new Gitalk({
+            id: '/2018/02/28/xgboost_parameters/',
+            clientID: '',
+            clientSecret: '',
+            repo: '',
+            owner: '',
+            admin: [''],
+            labels: ['gitment'],
+            perPage: 50,
+        })
+        gitalk.render('gitalk-container')
+        </script>
+  
+
+
+    </div>
+  </div>
+  <div class="column one-fourth">
+    
+<h3>Search</h3>
+<div id="site_search">
+    <input type="text" id="search_box" placeholder="Search">
+</div>
+
+<ul id="search_results"></ul>
+
+<link rel="stylesheet" type="text/css" href="http://localhost:4000/assets/css/modules/sidebar-search.css">
+<script src="http://localhost:4000/assets/js/jekyll-search.min.js"></script>
+<script src="http://localhost:4000/assets/js/search.js"></script>
+
+<script type="text/javascript">
+SimpleJekyllSearch({
+    searchInput: document.getElementById('search_box'),
+    resultsContainer: document.getElementById('search_results'),
+    json: 'http://localhost:4000/assets/search_data.json',
+    searchResultTemplate: '<li><a href="{url}" title="{desc}">{title}</a></li>',
+    noResultsText: 'No results found',
+    limit: 10,
+    fuzzy: false,
+    exclude: ['Welcome']
+})
+</script>
+
+    
+
+    
+<h3 class="post-directory-title mobile-hidden">Table of Contents</h3>
+<div id="post-directory-module" class="mobile-hidden">
+  <section class="post-directory">
+  <!-- Links that trigger the jumping -->
+  <!-- Added by javascript below -->
+  <dl></dl>
+  </section>
+</div>
+
+<script src="http://localhost:4000/assets/js/jquery.toc.js"></script>
+
+  </div>
+</div>
+</section>
+<!-- /section.content -->
+
+    <footer class="container">
+        <div class="site-footer" role="contentinfo">
+            <div class="copyright left mobile-block">
+                    © 2015
+                    <span title="Hu Wu">Hu Wu</span>
+                    <a href="javascript:window.scrollTo(0,0)" class="right mobile-visible">TOP</a>
+            </div>
+
+            <ul class="site-footer-links right mobile-hidden">
+                <li>
+                    <a href="javascript:window.scrollTo(0,0)" >TOP</a>
+                </li>
+            </ul>
+            <a href="http://github.com/wuhuhu800/wuhuhu800.github.io" target="_blank" aria-label="view source code">
+                <span class="mega-octicon octicon-mark-github" title="GitHub"></span>
+            </a>
+            <ul class="site-footer-links mobile-hidden">
+                
+                <li>
+                    <a href="http://localhost:4000/" title="首页" target="">首页</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/categories/" title="分类" target="">分类</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/wiki/" title="维基" target="">维基</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/links/" title="链接" target="">链接</a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:4000/about/" title="关于" target="">关于</a>
+                </li>
+                
+                <li><a href="http://localhost:4000/feed.xml"><span class="octicon octicon-rss" style="color:orange;"></span></a></li>
+            </ul>
+
+        </div>
+    </footer>
+    <!-- / footer -->
+    <script src="http://localhost:4000/assets/vendor/share.js/dist/js/share.min.js"></script>
+    <script src="http://localhost:4000/assets/js/geopattern.js"></script>
+    <script src="http://localhost:4000/assets/js/prism.js"></script>
+    <link rel="stylesheet" href="http://localhost:4000/assets/css/globals/prism.css">
+    <script>
+      jQuery(document).ready(function($) {
+        // geopattern
+        $('.geopattern').each(function(){
+          $(this).geopattern($(this).data('pattern-id'));
+        });
+       // hljs.initHighlightingOnLoad();
+      });
+    </script>
+
+    
+
+    
+
+    
+
+    
+    <div style="display:none">
+      <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-111499340-1', 'auto');
+        ga('send', 'pageview');
+
+      </script>
+    </div>
+    
+</body>
+</html>
