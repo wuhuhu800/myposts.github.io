@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: http://wuhuhu800.github.io
+url: https://wuhuhu800.github.io
 date_format: "ordinal"
 title: 问道
 subtitle: "学无先后，达者为师"
@@ -17,7 +17,7 @@ side_bar_repo_limit: 5
 # ---------------- #
 author: Hu Wu
 organization: woody800.top
-organization_url: http://www.woody800.top
+organization_url: https://www.woody800.top
 github_username: wuhuhu800
 location: Beijingn, China
 email: gwuhuhu800@gmail.com
