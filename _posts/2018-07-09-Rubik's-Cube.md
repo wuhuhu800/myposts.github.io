@@ -8,7 +8,7 @@ tags: jekyll
 ---
 
 # 三阶魔方新手教程
-- [参考学习](https://www.youtube.com/watch?v=pPJVYn64x-k)
+- 参考内容：[我知道你想玩魔方](https://www.youtube.com/watch?v=pPJVYn64x-k)
 ## 第一步：将魔法拼底部白色十字架：
 要求：魔方底面的十字架的外部四个白色面的相邻面必须和魔方侧面的中心点颜色一致，这个比较简单，自己调一下如下图
 ![十字图一](https://user-images.githubusercontent.com/21167490/42435800-561bdc50-838a-11e8-9301-618723d6f861.png)
